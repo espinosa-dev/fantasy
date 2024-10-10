@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Fantasy Auction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Añadiendo algo de estilo para las tarjetas de jugador */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .jugador-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .jugador-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .jugador-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .jugador-name {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .team-logo {
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+        }
+
+        .jugador-face {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .price-tag {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .offer-button {
+            text-align: center;
+        }
+
+        .offer-button button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .offer-button button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilos del formulario de pujas */
+        .auction-form {
+            margin-top: 15px;
+        }
+
+        .auction-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .auction-form button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .auction-form button:hover {
+            background-color: #007BB5;
+        }
+
+        .current-bid {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="#"><img src="/Football/img/logo.png" width="60" height="60" alt="Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Jugadores</a></li>
+            <li><a href="#">Equipos</a></li>
+            <li><a href="#">Torneos</a></li>
+            <li><a href="#">Contacto</a></li>
+            <a href="#"><button><b>LOG IN</b></button></a>
+        </ul>
+    </nav>
+</header>
+
+<!-- Sección de Jugadores con Pujas -->
+<section class="jugador-cards">
+  <div class="jugador-container">
+
+    <!-- Tarjeta de Cristiano Ronaldo -->
+    <div class="jugador-card">
+      <div class="jugador-card-header">
+        <span class="jugador-name">Cristiano Ronaldo</span>
+      </div>
+      <div class="jugador-card-body">
+        <img src="/Football/img/ronaldo-face.png" alt="Cristiano Ronaldo" class="jugador-face">
+      </div>
+      <div class="jugador-card-footer">
+        <img src="/Football/img/alnassr.png" alt="Al Nassr Logo" class="team-logo">
+      </div>
+      <div class="jugador-card-price">
+        <div class="price-tag">
+          <span>Precio Base: 100.000.000 €</span>
+        </div>
+        <div class="current-bid" id="currentBidRonaldo">Puja actual: 100.000.000 €</div>
+
+        <!-- Formulario para hacer una oferta -->
+        <div class="auction-form">
+          <input type="number" id="pujaRonaldo" placeholder="Introduce tu puja">
+          <button onclick="hacerPuja('Ronaldo')">Hacer oferta</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de Lionel Messi -->
+    <div class="jugador-card">
+      <div class="jugador-card-header">
+        <span class="jugador-name">Lionel Messi</span>
+      </div>
+      <div class="jugador-card-body">
+        <img src="/Football/img/messi-face.png" alt="Lionel Messi" class="jugador-face">
+      </div>
+      <div class="jugador-card-footer">
+        <img src="/Football/img/miami.png" alt="Inter Miami Logo" class="team-logo">
+      </div>
+      <div class="jugador-card-price">
+        <div class="price-tag">
+          <span>Precio Base: 90.000.000 €</span>
+        </div>
+        <div class="current-bid" id="currentBidMessi">Puja actual: 120.000.000 €</div>
+
+        <!-- Formulario para hacer una oferta -->
+        <div class="auction-form">
+          <input type="number" id="pujaMessi" placeholder="Introduce tu puja">
+          <button onclick="hacerPuja('Messi')">Hacer oferta</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+    // Variables para las pujas actuales
+    // Team 1
+    let pujaActualAsier = 100000000;
+    let pujaActualSergio = 120000000;
+    let pujaActualAlejandro = 150000000;
+    // Team 2
+    let pujaActualAlvaro = 150000000;
+    let pujaActualJesus = 150000000;
+    let pujaActualDaniel = 150000000;
+    // Team 3
+    let pujaActualFabrizio = 150000000;
+    let pujaActualOliver = 150000000;
+    let pujaActualAlexReif = 150000000;
+    // Team 4
+    let pujaActualDarwin = 150000000;
+    let pujaActualDavid = 150000000;
+    let pujaActualRichie = 150000000;
+    let pujaActualAntonio = 150000000;
+    // Team 5
+    let pujaActualBorja = 150000000;
+    let pujaActualJavier = 150000000;
+    let pujaActualCalderon = 150000000;
+    let pujaActualErnesto = 150000000;
+    
+    let pujaActualRonaldo = 100000000;
+  
+
+    // Función para hacer una puja
+    function hacerPuja(jugador) {
+        let nuevaPuja;
+        if (jugador === 'Ronaldo') {
+            nuevaPuja = document.getElementById('pujaRonaldo').value;
+            if (nuevaPuja > pujaActualRonaldo) {
+                pujaActualRonaldo = nuevaPuja;
+                document.getElementById('currentBidRonaldo').innerText = "Puja actual: " + nuevaPuja + " €";
+            } else {
+                alert("La puja debe ser mayor que la puja actual.");
+            }
+        } else if (jugador === 'Messi') {
+            nuevaPuja = document.getElementById('pujaMessi').value;
+            if (nuevaPuja > pujaActualMessi) {
+                pujaActualMessi = nuevaPuja;
+                document.getElementById('currentBidMessi').innerText = "Puja actual: " + nuevaPuja + " €";
+            } else {
+                alert("La puja debe ser mayor que la puja actual.");
+            }
+        }
+    }
+  </script>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section about">
+      <img class="footer-logo" height="150" width="150" src="/Football/img/logo.png" alt="Logo Footer">
+    </div>
+    <div class="footer-section links">
+      <h3>Enlaces</h3>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Equipos</a></li>
+        <li><a href="#">Política de Privacidad</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contacto</h3>
+      <p>Email: info@footballfantasy.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Football Fantasy | Creado por Álvaro Espinosa</p>
+  </div>
+</footer>
+
+</body>
+</html>
